@@ -24,8 +24,8 @@ services:
     restart: always
     tty: true
     volumes: 
+      - ./sql/initdb.sql:/docker-entrypoint-initdb.d/0_init.sql:rw    
       - ./mysql:/var/lib/mysql
-      - ./sql/initdb.sql:/docker-entrypoint-initdb.d/0_init.sql:ro      
     environment: 
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
