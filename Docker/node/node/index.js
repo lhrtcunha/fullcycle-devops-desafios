@@ -16,7 +16,7 @@ connection.end()
 
 connection.query('SELECT name FROM people', (err,rows) => {
     if(err) throw err;
-    rasp = '<h1>Full Cycle Rocks!</h1>' + rows;
+    rasp = '<h1>Full Cycle Rocks!</h1>' + rows.to;
 });
 
 
