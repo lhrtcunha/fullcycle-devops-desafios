@@ -6,7 +6,7 @@ services:
     build: 
       context: node
     container_name: app
-    command: sh -c "npm install express --save && npm install mysql && node index.js"
+    command: sh -c "npm install express --save && npm install mysql && npm install node-random-name && node index.js"
     networks: 
       - node-network
     volumes: 

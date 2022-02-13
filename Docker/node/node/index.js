@@ -9,8 +9,9 @@ const config = {
 };
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
+var random_name = require('node-random-name');
 
-connection.query(`INSERT INTO people(name) values('Luís Henrique')`, err => {
+connection.query(`INSERT INTO people(name) values(?)`, [random_name()], err => {
     if(err){
         console.log("[Erro ao incluir no BD",err);
         return;
@@ -20,7 +21,7 @@ connection.query(`INSERT INTO people(name) values('Luís Henrique')`, err => {
 var resp = '<h1>Full Cycle Rocks!</h1>';
 connection.query(`SELECT * FROM people`, (err,result) => {
     result.forEach(row => {
-        resp += `<h4>Nome: ${row.name} id: ${row.id}`
+        resp += `<h4>Nome: ${row.name} - id: ${row.id}`
     });    
 }).on('error', err => {
     console.log("[Erro ao obter registros do DB",err);
