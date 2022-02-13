@@ -10,18 +10,26 @@ const config = {
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 
-const sql = `INSERT INTO people(name) values('Wesley')`
-connection.query(sql)
-connection.end()    
-
-connection.query('SELECT name FROM people', (err,rows) => {
-    if(err) throw err;
-    rasp = '<h1>Full Cycle Rocks!</h1>' + rows.to;
+connection.query(`INSERT INTO people(name) values('Luís Henrique')`, err => {
+    if(err){
+        console.log("[Erro ao incluir no BD",err);
+        return;
+    }
 });
 
+var resp = '<h1>Full Cycle Rocks!</h1>';
+connection.query(`SELECT * FROM people`, (err,result) => {
+    result.forEach(row => {
+        resp += `<h4>Nome: ${row.name} id: ${row.id}`
+    });    
+}).on('error', err => {
+    console.log("[Erro ao obter registros do DB",err);
+});
+
+connection.end()
 
 app.get('/', (req,res) => {
-    res.send(rasp)
+    res.send(resp)
 })
 
 app.listen(port, ()=> {

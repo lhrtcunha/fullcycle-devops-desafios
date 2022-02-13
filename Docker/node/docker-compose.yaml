@@ -6,14 +6,13 @@ services:
     build: 
       context: node
     container_name: app
-    #entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+    command: sh -c "npm install express --save && npm install mysql && node index.js"
     networks: 
       - node-network
     volumes: 
       - ./node:/usr/src/app
     tty: true
-    #ports: 
-    #  - "3000:3000"
+
     depends_on: 
        - db
 
@@ -42,7 +41,7 @@ services:
     ports: 
       - "8080:80"
     depends_on: 
-       - app            
+       - app   
 
     
 
