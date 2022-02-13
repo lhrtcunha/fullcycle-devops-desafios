@@ -1,1 +1,3 @@
 mysql/
+node/node_modules
+node/*.json
