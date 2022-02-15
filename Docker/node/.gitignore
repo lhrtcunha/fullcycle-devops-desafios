@@ -1,3 +1,3 @@
 mysql/
 node/node_modules
-node/*.json
+node/package-lock.json

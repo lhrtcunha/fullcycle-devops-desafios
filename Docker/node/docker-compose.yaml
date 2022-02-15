@@ -6,13 +6,12 @@ services:
     build: 
       context: node
     container_name: app
-    command: sh -c "npm install express --save && npm install mysql && npm install node-random-name && dockerize -wait tcp://db:3306 -timeout 20s && node index.js"
+    entrypoint: sh "entrypoint.sh"
     networks: 
       - node-network
     volumes: 
       - ./node:/usr/src/app
     tty: true
-
     depends_on: 
        - db
 
